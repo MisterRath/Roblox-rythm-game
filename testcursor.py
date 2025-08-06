@@ -1,17 +1,11 @@
-import autoit
+import pydirectinput
 import time
 
-# Affiche la position du curseur pendant 5 secondes
-start_time = time.time()
-while time.time() - start_time < 5:
-    pos = autoit.mouse_get_pos()
-    print(f"Position du curseur : x={pos[0]}, y={pos[1]}", end='\r')
-    time.sleep(0.05)
+time.sleep(2)
 
-# Déplace la souris de gauche à droite sur l'écran
-screen_width = autoit.win_get_pos("[ACTIVE]")[2]
-y = autoit.mouse_get_pos()[1]
+# Positionne la souris à différents endroits
+positions = [(0, 0),(1, 1), (12, 7), (12, 14), (24, 7), (24, 14)]
 
-for x in range(0, screen_width, 10):
-    autoit.mouse_move(x, y, speed=1)
-    time.sleep(0.01)
+for x, y in positions:
+    pydirectinput.moveTo(x, y)
+    time.sleep(1)
